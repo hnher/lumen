@@ -25,6 +25,12 @@ class ResponseMiddleware
         $this->timer = time();
     }
 
+    //设置排除的路由 例如：/api/*
+    //设置后则不会被格式化
+    protected $except = [
+
+    ];
+
     /**
      * Handle an incoming request.
      *
@@ -36,6 +42,10 @@ class ResponseMiddleware
     {
         $response = $next($request);
 
+        //此处排除特定路由不格式化输出
+        if ($this->inExceptArray($request)) {
+            return $response;
+        }
 
         $data = [
             'code' => $response->getStatusCode(),
@@ -83,5 +93,20 @@ class ResponseMiddleware
         }
 
         return $response;
+    }
+
+    protected function inExceptArray($request)
+    {
+        foreach ($this->except as $except) {
+            if ($except !== '/') {
+                $except = trim($except, '/');
+            }
+
+            if ($request->fullUrlIs($except) || $request->is($except)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

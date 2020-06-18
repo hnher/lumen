@@ -8,10 +8,16 @@
 namespace App\Http\Middleware;
 
 use App\Facades\Json\Json;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Closure;
 
+/**
+ * Class ApplicationLogging
+ * 应用程序请求日志
+ * 如果启用则会记录每一次的请求内容和响应内容
+ * @package App\Http\Middleware
+ * User retr
+ */
 class ApplicationLogging
 {
     /**
@@ -22,12 +28,9 @@ class ApplicationLogging
     public function handle($request, Closure $next)
     {
         $response = $next($request);
-
         $responseData = [
             'params' => $request->all(),
-            'header' => $request->header(),
-            'method' => $request->method(),
-            'data' => Json::decode($response->getContent() ?? "{}") ?? []
+            'response' => Json::decode($response->getContent() ?? "{}") ?? []
         ];
 
         Log::info('请求日志', $responseData);

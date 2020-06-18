@@ -7,6 +7,7 @@
 
 namespace App\Logging\Lines;
 
+use App\Facades\Json\Json;
 use Illuminate\Support\Str;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Formatter\NormalizerFormatter;
@@ -27,6 +28,7 @@ class JsonLineFormatter extends LineFormatter
         $referer = $_SERVER['HTTP_REFERER'] ?? '';
         $ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
         $url = $protocol . $host . $uri;
+        $cookies = Json::encode($_COOKIE ?? "");
         if (strpos(php_sapi_name(), 'cli') !== false) {
             $url = 'artisan';
             $referer = 'artisan';
@@ -35,7 +37,7 @@ class JsonLineFormatter extends LineFormatter
 
         $datetime = date('Y-m-d H:i:s', time());
 
-        $output = '{"datetime": "'. $datetime .'", "timestamp": "%datetime%", "url": "'. $url .'", "UA": "'. $ua .'", "referer": "'. $referer .'", "uuid": "%uuid%", "channel": "%channel%", "level": "%level_name%", "message": "%message%", "context": [%context%], "extra": %extra%}' . "\n";;
+        $output = '{"datetime": "'. $datetime .'", "timestamp": "%datetime%", "url": "'. $url .'", "UA": "'. $ua .'", "referer": "'. $referer .'", "uuid": "%uuid%", "channel": "%channel%", "level": "%level_name%", "message": "%message%", "context": [%context%], "extra": %extra%, "cookies": '. $cookies .'}' . "\n";;
         $vars   = (new NormalizerFormatter())->format($record);
         $vars['uuid'] = 'uuid:' . Str::uuid();
         foreach ($vars['extra'] as $var => $val) {
