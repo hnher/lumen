@@ -19,7 +19,7 @@
 ## 使用
 
 ```bash
-composer create-project hnher/lumen-scaffold LumenApp
+composer create-project hnher/lumen LumenApp
 ```
 
 ## Security Vulnerabilities
