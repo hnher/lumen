@@ -1,5 +1,5 @@
 {
-    "name": "scaffold/lumen",
+    "name": "hnher/lumen-scaffold",
     "description": "Lumen 框架的手脚架项目",
     "keywords": ["framework", "laravel", "lumen", "scaffold"],
     "license": "MIT",
