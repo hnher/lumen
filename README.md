@@ -14,10 +14,13 @@
 3. 允许跨域请求
 4. 统一格式化返回
 5. 开启 Cookie 支持
+6. Makefile 自动脚本
 
-## Contributing
+## 使用
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+composer create-project hnher/lumen-scaffold LumenApp
+```
 
 ## Security Vulnerabilities
 
