@@ -32,7 +32,7 @@ return [
     */
 
     'connections' => [
-        'mysql' => [
+        'master' => [
             'driver' => 'mysql',
             'read' => [
                 'host' => [
