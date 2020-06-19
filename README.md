@@ -23,6 +23,12 @@
 composer create-project hnher/lumen LumenApp
 ```
 
+### 延时任务
+```bash
+//启动任务消费者
+pm2 start ecosystem.config.js
+```
+
 ## Security Vulnerabilities
 
 If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
