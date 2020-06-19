@@ -3,6 +3,8 @@
 namespace App\Console;
 
 use App\Console\Commands\TestCommand;
+use App\Modules\Scheduler\Commands\ConsumerCommand;
+use App\Modules\Scheduler\Commands\SchedulerTestCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -14,7 +16,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        TestCommand::class
+        TestCommand::class,
+        // Scheduler 消费者
+        ConsumerCommand::class,
+        SchedulerTestCommand::class
     ];
 
     /**

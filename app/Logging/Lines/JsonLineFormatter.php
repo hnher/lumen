@@ -70,7 +70,6 @@ class JsonLineFormatter extends LineFormatter
         if (false !== strpos($output, '%')) {
             $output = preg_replace('/%(?:extra|context)\..+?%/', '', $output);
         }
-
         return $output;
     }
 }

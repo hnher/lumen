@@ -7,6 +7,7 @@
     "require": {
         "php": "^7.2.5",
         "ext-json": "*",
+        "aliyunmq/mq-http-sdk": "^1.0",
         "illuminate/cookie": "^7.16",
         "illuminate/redis": "^7.16",
         "laravel/lumen-framework": "^7.0"

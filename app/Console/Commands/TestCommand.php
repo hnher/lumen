@@ -7,8 +7,9 @@
 
 namespace App\Console\Commands;
 
+use App\Facades\Scheduler\Scheduler;
+use App\Modules\Scheduler\Messages\TestMessage;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 
 class TestCommand extends Command
 {
@@ -21,7 +22,8 @@ class TestCommand extends Command
      */
     public function handle()
     {
-        Log::info('abc', ['a' => 1]);
-        throw new \Exception('这是一个异常消息', 1000);
+        $res = Scheduler::sendMessage(new TestMessage());
+
+        dd($res);
     }
 }
