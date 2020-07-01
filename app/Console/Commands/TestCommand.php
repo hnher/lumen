@@ -7,8 +7,6 @@
 
 namespace App\Console\Commands;
 
-use App\Facades\Scheduler\Scheduler;
-use App\Modules\Scheduler\Messages\TestMessage;
 use Illuminate\Console\Command;
 
 class TestCommand extends Command
@@ -22,8 +20,5 @@ class TestCommand extends Command
      */
     public function handle()
     {
-        $res = Scheduler::sendMessage(new TestMessage());
-
-        dd($res);
     }
 }

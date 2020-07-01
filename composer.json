@@ -10,7 +10,8 @@
         "aliyunmq/mq-http-sdk": "^1.0",
         "illuminate/cookie": "^7.16",
         "illuminate/redis": "^7.16",
-        "laravel/lumen-framework": "^7.0"
+        "laravel/lumen-framework": "^7.0",
+        "qiniu/php-sdk": "^7.2"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9.1",
