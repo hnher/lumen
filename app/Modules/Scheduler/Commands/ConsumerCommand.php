@@ -66,8 +66,9 @@ class ConsumerCommand extends Command
                 $data = json_decode($message->getMessageBody(), true);
                 Log::info('具体业务消息为...', ['message' => $message, 'body' => $data]);
                 $cmd = $data['cmd'];
+                $params = $data['params'] ?? [];
                 // 调起响应 Artisan 命令
-                Artisan::call($cmd, []);
+                Artisan::call($cmd, $params);
             }
 
             // $message->getNextConsumeTime()前若不确认消息消费成功，则消息会重复消费
