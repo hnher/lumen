@@ -14,7 +14,7 @@ return [
             'driver' => 'daily',
             'tap' => [App\Logging\JsonFormatter::class],
             // 日志存放路径
-            'path' => storage_path('logs/'. env('APP_NAME') .'.log'),
+            'path' => storage_path('logs/' . env('APP_NAME') . '.log'),
             // 日志等级：
             'level' => 'info',
             // 日志分片周期，多少天一个文件
