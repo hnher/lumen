@@ -12,7 +12,8 @@
         "illuminate/redis": "^7.16",
         "laravel/lumen-framework": "^7.0",
         "overtrue/easy-sms": "^1.1",
-        "qiniu/php-sdk": "^7.2"
+        "qiniu/php-sdk": "^7.2",
+        "ext-redis": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9.1",
