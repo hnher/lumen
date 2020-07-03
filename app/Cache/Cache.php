@@ -157,7 +157,7 @@ class Cache extends Redis
      * 批量删除 Hash 子 key
      * @param string $key Hash Key 名称
      * @param array $subKeys Hash 子Key 名称
-     * @return mixed | boolean
+     * @return int | bool
      */
     public static function hMDel(string $key, array $subKeys = [])
     {
