@@ -15,7 +15,7 @@ use App\Facades\Redis\Redis;
  * @package App\Cache
  * User retr
  */
-class RedisCache extends Redis
+class Cache extends Redis
 {
     //请在此处声明常用时间，如一小时、一天、一周、一个月、一年等！
 

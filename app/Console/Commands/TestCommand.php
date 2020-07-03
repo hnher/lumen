@@ -7,7 +7,7 @@
 
 namespace App\Console\Commands;
 
-use App\Cache\RedisCache;
+use App\Cache\Cache;
 use Illuminate\Console\Command;
 
 class TestCommand extends Command
@@ -21,9 +21,9 @@ class TestCommand extends Command
      */
     public function handle()
     {
-        $u = RedisCache::set('user', 1);
+        $u = Cache::set('user', 1);
 
         //$u = RedisCache::ttl('user');
-        dd(RedisCache::ttl('user'));
+        dd(Cache::ttl('user'));
     }
 }
