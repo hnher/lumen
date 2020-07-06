@@ -35,14 +35,17 @@ composer create-project hnher/lumen LumenApp
 #### 编写任务消息实例
 
 ```php
+<?php
 namespace App\Modules\Scheduler\Messages;
 
 
 class TestMessage extends Message
 {
-    public function __construct(string $cmd = 'Scheduler:Test', array $params = [], string $key = '', int $delay = 10)
+    public $cmd = 'Scheduler:Test';
+
+    public function __construct(array $params = [], int $delay = 10, string $key = '')
     {
-        parent::__construct($cmd, $params, $key, $delay);
+        parent::__construct($params, $delay, $key);
     }
 }
 ```
@@ -52,6 +55,7 @@ class TestMessage extends Message
 可以在代码任何地方使用 Scheduler 门面的 sendMessage 方法发送消息实例
 
 ```php
+<?php
 namespace App\Console\Commands;
 
 use App\Facades\Scheduler\Scheduler;
@@ -69,9 +73,7 @@ class TestCommand extends Command
      */
     public function handle()
     {
-        $res = Scheduler::sendMessage(new TestMessage());
-
-        dd($res);
+        Scheduler::sendMessage(new TestMessage());
     }
 }
 ```
