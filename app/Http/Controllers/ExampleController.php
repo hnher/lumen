@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Http;
 
 class ExampleController extends Controller
 {
@@ -13,16 +12,17 @@ class ExampleController extends Controller
      */
     public function __construct()
     {
-        //
+        parent::__construct();
     }
 
     /**
+     * 测试接口连通性
      * @return array
      */
-    public function index()
+    public function index() : array
     {
         return [
-            'datetime' => date('Y-m-d H:i:s', time())
+            'datetime' => date('Y-m-d H:i:s')
         ];
     }
 }
