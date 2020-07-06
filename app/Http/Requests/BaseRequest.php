@@ -17,6 +17,7 @@ use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Routing\Router;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Class BaseRequest
@@ -44,7 +45,7 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
  * @method Request merge(array $input)
  * @method Request replace(array $input)
  * @method ParameterBag|mixed json($key = null, $default = null)
- * @method static createFrom(Request $from, Request|null $to = null)
+ * @method static Request createFrom(Request $from, Request|null $to = null)
  * @method static Request createFromBase(SymfonyRequest $request)
  * @method Request duplicate(array $query = null, array $request = null, array $attributes = null, array $cookies = null, array $files = null, array $server = null)
  * @method Store session()
@@ -63,6 +64,47 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
  * @method mixed offsetGet(string $offset)
  * @method void offsetSet(string $offset, mixed $value)
  * @method void offsetUnset(string $offset)
+ * @method bool hasSession()
+ * @method void setSession(SessionInterface $session)
+ * @method array getClientIps()
+ * @method string|null getClientIp()
+ * @method string getScriptName()
+ * @method string getPathInfo()
+ * @method string getBasePath()
+ * @method string getBaseUrl()
+ * @method string getScheme()
+ * @method int|string getPort()
+ * @method string getHttpHost()
+ * @method string getRequestUri()
+ * @method string getSchemeAndHttpHost()
+ * @method string getUri()
+ * @method string getUriForPath(string $path)
+ * @method string getRelativeUriForPath(string $path)
+ * @method string|null getQueryString()
+ * @method bool isSecure()
+ * @method string getHost()
+ * @method void setMethod(string $method)
+ * @method string getMethod()
+ * @method string|null getMimeType(string $format)
+ * @method string|null getFormat(?string $mimeType)
+ * @method string|null getContentType()
+ * @method string getDefaultLocale()
+ * @method void setDefaultLocale(string $locale)
+ * @method void setLocale(string $locale)
+ * @method string getLocale()
+ * @method bool isMethod(string $method)
+ * @method bool isMethodSafe()
+ * @method bool isMethodIdempotent()
+ * @method string getProtocolVersion()
+ * @method string|resource getContent(bool $asResource = false)
+ * @method array getETags()
+ * @method bool isNoCache()
+ * @method array getLanguages()
+ * @method array getCharsets()
+ * @method array getEncodings()
+ * @method array getAcceptableContentTypes()
+ * @method bool isXmlHttpRequest()
+ * @method bool preferSafeContent()
  * @package App\Http\Requests
  * User retr
  * @see Request;
