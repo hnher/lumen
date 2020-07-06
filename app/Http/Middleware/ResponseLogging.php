@@ -18,7 +18,7 @@ use Closure;
  * @package App\Http\Middleware
  * User retr
  */
-class ApplicationLogging
+class ResponseLogging
 {
     /**
      * @param $request
@@ -33,7 +33,7 @@ class ApplicationLogging
             'response' => Json::decode($response->getContent() ?? "{}") ?? []
         ];
 
-        Log::info('请求日志', $responseData);
+        Log::channel('response')->info('请求日志', $responseData);
 
         return $response;
     }

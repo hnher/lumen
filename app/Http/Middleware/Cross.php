@@ -12,7 +12,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class CrossRequestMiddleware
+class Cross
 {
     public function handle(Request $request, Closure $next)
     {

@@ -23,16 +23,16 @@
 composer create-project hnher/lumen LumenApp
 ```
 
-## 延时任务
+### 延时任务
 
 延时任务基于阿里云 RocketMQ 和 pm2 搭建。RocketMQ 作为消息传递、pm2 作为进程守护
 
-### 服务器需求
+#### 服务器需求
 
 1. 阿里云 RocketMQ
 2. pm2
 
-### 编写任务消息实例
+#### 编写任务消息实例
 
 ```php
 namespace App\Modules\Scheduler\Messages;
@@ -47,7 +47,7 @@ class TestMessage extends Message
 }
 ```
 
-### 发送延时任务消息
+#### 发送延时任务消息
 
 可以在代码任何地方使用 Scheduler 门面的 sendMessage 方法发送消息实例
 
@@ -76,7 +76,7 @@ class TestCommand extends Command
 }
 ```
 
-### 消费任务消息
+#### 消费任务消息
 
 可以在 ecosystem.config.js 文件中指定运行实例和其他配置，也可以继承 ConsumerCommand 自定义消费
 
@@ -86,7 +86,7 @@ pm2 start ecosystem.config.js
 
 Good Luck
 
-## 格式化返回
+### 格式化返回
 
 您可以直接使用 Response 中间件格式化返回数据格式化后的数据如下所示
 
@@ -134,7 +134,7 @@ class Response
 }
 ```
 
-## 日志 Json 化
+### 日志 Json 化
 
 对日志进行了 Json 格式化主要为了 ELK 收集比较方便。您依然可以使用如下方式调用
 
@@ -184,6 +184,14 @@ class Controller extends BaseController
     "cookies": []
 }
 ```
+
+### 跨域支持
+
+Cross 中间件提供跨域支持，已经在全局开启。
+
+### 响应日志
+
+ResponseLogging 中间件提供了所有请求的响应日志记录，已经全局开启。
 
 ## 安全性漏洞
 

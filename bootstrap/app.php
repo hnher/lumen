@@ -83,9 +83,14 @@ $app->configure('sms');
  * 全局中间件
  */
 $app->middleware([
+    //启用 Cookie 支持
     App\Http\Middleware\EncryptCookies::class,
+    //格式化响应请求
     App\Http\Middleware\Response::class,
-    App\Http\Middleware\ApplicationLogging::class
+    //应用程序请求响应日志
+    App\Http\Middleware\ResponseLogging::class,
+    //跨域支持
+    App\Http\Middleware\Cross::class
 ]);
 
 /**
@@ -93,6 +98,8 @@ $app->middleware([
  */
 $app->routeMiddleware([
     'response' => App\Http\Middleware\Response::class,
+    //跨域支持
+    'cross' => App\Http\Middleware\Cross::class
 ]);
 
 /*
@@ -107,6 +114,7 @@ $app->routeMiddleware([
 */
 
 $app->register(App\Providers\AppServiceProvider::class);
+//启用 Redis 支持
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
