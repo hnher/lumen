@@ -1,7 +1,7 @@
 <?php
 /**
  * 用于将所有响应 JSON 格式化
- * ResponseMiddleware.php
+ * Response.php
  * Created On 2020/2/17 5:29 下午
  * Create by retr
  */
@@ -11,12 +11,12 @@ namespace App\Http\Middleware;
 use App\Constants\ErrorConstant;
 use Exception as BaseException;
 use Closure;
-use Illuminate\Http\Response;
+use Illuminate\Http\Response as HttpResponse;
 use stdClass;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class ResponseMiddleware
+class Response
 {
     private $timer = 0;
 
@@ -63,7 +63,7 @@ class ResponseMiddleware
              */
             if ($exception instanceof HttpException) {
                 $data['code'] = $response->getStatusCode();
-                $data['message'] = ErrorConstant::HTTP_ERROR[$response->getStatusCode()] ?? Response::$statusTexts[$response->getStatusCode()];
+                $data['message'] = ErrorConstant::HTTP_ERROR[$response->getStatusCode()] ?? HttpResponse::$statusTexts[$response->getStatusCode()];
                 $response->setContent($data);
                 //此处必须提前 return 因为所有的异常类均继承 Exception 类
                 return $response;
@@ -82,7 +82,7 @@ class ResponseMiddleware
 
             //此处用于处理验证器异常
             if ($response->getStatusCode() == 422) {
-                $data['message'] = Response::$statusTexts[$response->getStatusCode()];
+                $data['message'] = HttpResponse::$statusTexts[$response->getStatusCode()];
                 $data['data'] = ['validators' => json_decode($response->getContent())];
                 $response->setContent(json_encode($data, true));
                 return $response;

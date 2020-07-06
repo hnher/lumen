@@ -84,7 +84,7 @@ $app->configure('sms');
  */
 $app->middleware([
     App\Http\Middleware\EncryptCookies::class,
-    App\Http\Middleware\ResponseMiddleware::class,
+    App\Http\Middleware\Response::class,
     App\Http\Middleware\ApplicationLogging::class
 ]);
 
@@ -92,7 +92,7 @@ $app->middleware([
  * 路由中间件
  */
 $app->routeMiddleware([
-    'response' => App\Http\Middleware\ResponseMiddleware::class,
+    'response' => App\Http\Middleware\Response::class,
 ]);
 
 /*

@@ -86,10 +86,109 @@ pm2 start ecosystem.config.js
 
 Good Luck
 
-## Security Vulnerabilities
+## 格式化返回
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+您可以直接使用 Response 中间件格式化返回数据格式化后的数据如下所示
+
+```json
+{
+  "code": 200,
+  "message": "ok",
+  "time": 1594020021,
+  "dateTime": "2020-07-06 15:20:21",
+  "data": {
+    "datetime": "2020-07-06 15:20:21"
+  }
+}
+```
+
+如果您特定路由需要显示原有的响应信息则可以在 Response 中间件中 $except 属性中排除，例如众多支付回调。
+
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+use App\Constants\ErrorConstant;
+use Exception as BaseException;
+use Closure;
+use Illuminate\Http\Response as HttpResponse;
+use stdClass;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+
+class Response
+{
+    private $timer = 0;
+
+    public function __construct()
+    {
+        $this->timer = time();
+    }
+
+    //设置排除的路由 例如：/api/*
+    //设置后则不会被格式化
+    protected $except = [
+        '/notify/alipay/*'
+    ];
+}
+```
+
+## 日志 Json 化
+
+对日志进行了 Json 格式化主要为了 ELK 收集比较方便。您依然可以使用如下方式调用
+
+```php
+<?php
+
+use App\Http\Controllers\Controller as BaseController;
+use Illuminate\Support\Facades\Log;
+
+class Controller extends BaseController
+{
+    public function __construct() {
+        parent::__construct();
+    }
+
+    public function index()
+    {
+        Log::info('测试日志写入', ['name' => '测试']);
+    }
+}
+```
+
+日志输出如下所示
+
+```text
+{"datetime": "2020-07-06 15:28:02", "timestamp": "2020-07-06T15:28:02.844005+08:00", "url": "artisan", "UA": "php artisan", "referer": "artisan", "uuid": "uuid:5eb4e2a3-e843-4224-bde3-7fce8008b8b9", "channel": "local", "level": "INFO", "message": "测试日志写入", "c": [{"name":"测试"}], "extra": [], "cookies": []}
+```
+具体 Json 如下
+
+```json
+{
+    "datetime": "2020-07-06 15:28:02",
+    "timestamp": "2020-07-06T15:28:02.844005+08:00", 
+    "url": "artisan", 
+    "UA": "php artisan", 
+    "referer": "artisan",
+    "uuid": "uuid:5eb4e2a3-e843-4224-bde3-7fce8008b8b9", 
+    "channel": "local", 
+    "level": "INFO", 
+    "message": "测试日志写入", 
+    "context": [
+        {
+            "name":"测试"
+        }
+    ], 
+    "extra": [], 
+    "cookies": []
+}
+```
+
+## 安全性漏洞
+
+如果你发现任何安全性漏洞请发送邮件到 dyy@dyy.name
 
 ## License
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+本项目基于 Lumen 开发遵循 MIT 协议 [MIT license](https://opensource.org/licenses/MIT).

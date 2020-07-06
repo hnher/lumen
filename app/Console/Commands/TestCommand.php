@@ -7,8 +7,8 @@
 
 namespace App\Console\Commands;
 
-use App\Cache\Cache;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class TestCommand extends Command
 {
@@ -21,9 +21,6 @@ class TestCommand extends Command
      */
     public function handle()
     {
-        $u = Cache::set('user', 1);
-
-        //$u = RedisCache::ttl('user');
-        dd(Cache::ttl('user'));
+        Log::info('测试日志写入', ['name' => '测试']);
     }
 }
