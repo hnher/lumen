@@ -28,6 +28,9 @@ class Cache extends Redis
     //一天
     const ONE_DAY = self::ONE_HOUR * 24;
 
+    //一周
+    const ONE_WEEK = self::ONE_DAY * 7;
+
     //一个月
     const ONE_MONTH = self::ONE_DAY * 30;
 
@@ -50,7 +53,7 @@ class Cache extends Redis
      */
     public static function getKey(string $str, ...$keys)
     {
-        return vsprintf(self::PREFIX . $str, $keys);
+        return vsprintf(static::PREFIX . $str, $keys);
     }
 
     /**
@@ -106,17 +109,142 @@ class Cache extends Redis
     }
 
     /**
+     * 此处重写 incr 逻辑
+     * @param string $key
+     * @param int $ttl
+     * @return int
+     */
+    public static function incr(string $key, int $ttl = self::FOREVER)
+    {
+        $res = parent::incr($key);
+        self::expire($key, $ttl);
+        return $res;
+    }
+
+    /**
+     * 此处重写 incrBy 逻辑
+     * @param string $key
+     * @param int $value
+     * @param int $ttl
+     * @return int
+     */
+    public static function incrBy(string $key, int $value, int $ttl = self::FOREVER)
+    {
+        $res = parent::incrBy($key, $value);
+        self::expire($key, $ttl);
+        return $res;
+    }
+
+    /**
+     * 此处重写 incrByFloat 逻辑
+     * @param string $key
+     * @param float $increment
+     * @param int $ttl
+     * @return float
+     */
+    public static function incrByFloat(string $key, float $increment, int $ttl = self::FOREVER)
+    {
+        $res = parent::incrByFloat($key, $increment);
+        self::expire($key, $ttl);
+        return $res;
+    }
+
+    /**
+     * 此处重写 decr 逻辑
+     * @param string $key
+     * @param int $ttl
+     * @return int
+     */
+    public static function decr(string $key, int $ttl = self::FOREVER)
+    {
+        $res = parent::decr($key);
+        self::expire($key, $ttl);
+        return $res;
+    }
+
+    /**
+     * 此处重写 decrBy 逻辑
+     * @param string $key
+     * @param int $value
+     * @param int $ttl
+     * @return int
+     */
+    public static function decrBy(string $key, int $value, int $ttl = self::FOREVER)
+    {
+        $res = parent::decrBy($key, $value);
+        self::expire($key, $ttl);
+        return $res;
+    }
+
+    /**
+     * 此处重写 hIncrBy逻辑
+     * @param string $key
+     * @param string $hashKey
+     * @param int $value
+     * @param int $ttl
+     * @return int
+     */
+    public static function hIncrBy(string $key, string $hashKey, int $value, int $ttl = self::FOREVER)
+    {
+        $res = parent::hIncrBy($key, $hashKey, $value);
+        self::expire($key, $ttl);
+        return $res;
+    }
+
+    /**
+     * 此处重写 hIncrByFloat 逻辑
+     * @param string $key
+     * @param string $field
+     * @param float $increment
+     * @param int $ttl
+     * @return float
+     */
+    public static function hIncrByFloat(string $key, string $field, float $increment, int $ttl = self::FOREVER)
+    {
+        $res = parent::hIncrByFloat($key, $field, $increment);
+        self::expire($key, $ttl);
+        return $res;
+    }
+
+    /**
      * 改写原有逻辑
      * 此处每次写入值都会更新过期时间。请注意！！！
      * @param string $key
-     * @param array  $value1
+     * @param array  $values
      * @param int $ttl
-     *
      * @return mixed
      */
-    public static function rPush(string $key, array $value1, int $ttl = self::FOREVER)
+    public static function rPush(string $key, array $values, int $ttl = self::FOREVER)
     {
-        $res = parent::rPush($key, $value1);
+        $res = parent::rPush($key, $values);
+        self::expire($key, $ttl);
+        return $res;
+    }
+
+    /**
+     * 此处重写 lPush 逻辑
+     * @param string $key
+     * @param array $values
+     * @param int $ttl
+     * @return bool|int
+     */
+    public static function lPush(string $key, array $values, int $ttl = self::FOREVER)
+    {
+        $res = parent::lPush($key, $values);
+        self::expire($key, $ttl);
+        return $res;
+    }
+
+    /**
+     * 此处重写 sAdd 逻辑
+     * @param string $key
+     * @param array $values
+     * @param int $ttl
+     * @return bool|int
+     */
+    public static function sAdd(string $key, array $values, int $ttl = self::FOREVER)
+    {
+        $res = parent::sAdd($key, $values);
         self::expire($key, $ttl);
         return $res;
     }
