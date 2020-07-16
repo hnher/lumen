@@ -216,7 +216,7 @@ class Cache extends Redis
      */
     public static function rPush(string $key, array $values, int $ttl = self::FOREVER)
     {
-        $res = parent::rPush($key, $values);
+        $res = parent::rPush($key, ...$values);
         self::expire($key, $ttl);
         return $res;
     }
@@ -230,7 +230,7 @@ class Cache extends Redis
      */
     public static function lPush(string $key, array $values, int $ttl = self::FOREVER)
     {
-        $res = parent::lPush($key, $values);
+        $res = parent::lPush($key, ...$values);
         self::expire($key, $ttl);
         return $res;
     }
@@ -244,7 +244,7 @@ class Cache extends Redis
      */
     public static function sAdd(string $key, array $values, int $ttl = self::FOREVER)
     {
-        $res = parent::sAdd($key, $values);
+        $res = parent::sAdd($key, ...$values);
         self::expire($key, $ttl);
         return $res;
     }
