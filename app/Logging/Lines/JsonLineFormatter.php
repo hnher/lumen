@@ -40,7 +40,7 @@ class JsonLineFormatter extends LineFormatter
         $output = '{"datetime": "'. $datetime .'", "timestamp": "%datetime%", "url": "'. $url .'", "UA": "'. $ua .'", "referer": "'. $referer .'", "uuid": "%uuid%", "channel": "%channel%", "level": "%level_name%", "message": "%message%", "context": [%context%], "extra": %extra%, "cookies": '. $cookies .'}' . "\n";;
         $vars   = (new NormalizerFormatter())->format($record);
         $vars['channel'] = $vars['context']['channel'] ?? 'local';
-        $vars['uuid'] = 'uuid:' . Str::uuid();
+        $vars['uuid'] = 'uuid:' . app('app')->uuid;
         foreach ($vars['extra'] as $var => $val) {
             if (false !== strpos($output, '%extra.' . $var . '%')) {
                 $output = str_replace('%extra.' . $var . '%', $this->stringify($val), $output);

@@ -22,5 +22,8 @@ class TestCommand extends Command
     public function handle()
     {
         Log::info('测试日志写入', ['name' => '测试']);
+        Log::info('测试日志写入2', ['name' => '测试']);
+        Log::info('测试日志写入3', ['name' => '测试']);
+        Log::info('测试日志写入4', ['name' => '测试']);
     }
 }
