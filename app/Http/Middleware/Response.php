@@ -88,7 +88,7 @@ class Response
                 return $response;
             }
 
-            $data['data'] = $response->original;
+            $data['data'] = $response->original ?? new stdClass();
             $response->setContent($data);
         }
 
