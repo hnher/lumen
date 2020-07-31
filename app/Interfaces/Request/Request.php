@@ -13,8 +13,8 @@ interface Request
 {
     public function validator(HttpRequest $request, array $rules, array $messages);
 
-    public function rules() : array ;
+    public function rules(): array;
 
-    public function messages() : array ;
+    public function messages(): array;
 }
 

@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
+use App\Listeners\ExampleListener;
+use App\Events\ExampleEvent;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -12,8 +14,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        \App\Events\ExampleEvent::class => [
-            \App\Listeners\ExampleListener::class,
+        ExampleEvent::class => [
+            ExampleListener::class,
         ],
     ];
 }

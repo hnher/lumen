@@ -8,7 +8,6 @@
 namespace App\Logging\Lines;
 
 use App\Facades\Json\Json;
-use Illuminate\Support\Str;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Formatter\NormalizerFormatter;
 
@@ -19,7 +18,7 @@ class JsonLineFormatter extends LineFormatter
      * @param array $record
      * @return string
      */
-    public function format(array $record) : string
+    public function format(array $record): string
     {
         $port = $_SERVER['SERVER_PORT'] ?? 80;
         $protocol = $port == 443 ? 'https://' : 'http://';
@@ -37,10 +36,10 @@ class JsonLineFormatter extends LineFormatter
 
         $datetime = date('Y-m-d H:i:s', time());
 
-        $output = '{"datetime": "'. $datetime .'", "timestamp": "%datetime%", "url": "'. $url .'", "UA": "'. $ua .'", "referer": "'. $referer .'", "uuid": "%uuid%", "channel": "%channel%", "level": "%level_name%", "message": "%message%", "context": [%context%], "extra": %extra%, "cookies": '. $cookies .'}' . "\n";;
-        $vars   = (new NormalizerFormatter())->format($record);
+        $output = '{"datetime": "' . $datetime . '", "timestamp": "%datetime%", "url": "' . $url . '", "UA": "' . $ua . '", "referer": "' . $referer . '", "uuid": "%uuid%", "channel": "%channel%", "level": "%level_name%", "message": "%message%", "context": [%context%], "extra": %extra%, "cookies": ' . $cookies . '}' . "\n";
+        $vars = (new NormalizerFormatter())->format($record);
         $vars['channel'] = $vars['context']['channel'] ?? 'local';
-        $vars['uuid'] = 'uuid:' . app('app')->uuid;
+        $vars['uuid'] = app('app')->uuid;
         foreach ($vars['extra'] as $var => $val) {
             if (false !== strpos($output, '%extra.' . $var . '%')) {
                 $output = str_replace('%extra.' . $var . '%', $this->stringify($val), $output);

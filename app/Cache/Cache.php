@@ -41,15 +41,16 @@ class Cache extends Redis
 
     /**
      * PREFIX 缓存前缀
+     * 不同的服务可能需要不同的前缀需要在子类中重写
      */
     const PREFIX = '';
 
     /**
      * 用于格式化每个 Key 序列
-     * @example self::getKey('abc_%s_%s', 1, 2)
      * @param string $str
      * @param mixed ...$keys
      * @return string
+     * @example self::getKey('abc_%s_%s', 1, 2)
      */
     public static function getKey(string $str, ...$keys)
     {
@@ -59,7 +60,7 @@ class Cache extends Redis
     /**
      * 为mGet做准备,变成数组键值
      * @param string $key 键值
-     * @param array  $arr 匹配的数组队
+     * @param array $arr 匹配的数组队
      * @return array
      */
     public static function getMoreKey($key, $arr)
@@ -210,7 +211,7 @@ class Cache extends Redis
      * 改写原有逻辑
      * 此处每次写入值都会更新过期时间。请注意！！！
      * @param string $key
-     * @param array  $values
+     * @param array $values
      * @param int $ttl
      * @return mixed
      */
@@ -247,24 +248,6 @@ class Cache extends Redis
         $res = parent::sAdd($key, ...$values);
         self::expire($key, $ttl);
         return $res;
-    }
-
-    /**
-     * 设置当天时间
-     * @return false|string
-     */
-    public static function getDayDateString()
-    {
-        return date('Ymd', time());
-    }
-
-    /**
-     * 设置当天时间
-     * @return false|string
-     */
-    public static function getDateTimeString()
-    {
-        return date('YmdHis', time());
     }
 
     /**

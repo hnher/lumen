@@ -19,7 +19,7 @@ class ExampleController extends Controller
      * 测试接口连通性
      * @return array
      */
-    public function index() : array
+    public function index(): array
     {
         return [
             'datetime' => date('Y-m-d H:i:s')

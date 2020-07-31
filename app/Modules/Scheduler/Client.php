@@ -49,7 +49,7 @@ class Client
      */
     public function getProducer(string $topic = '', string $instanceId = '')
     {
-        list($topic, ,$instanceId) = $this->getClientConfig($topic, '', $instanceId);
+        list($topic, , $instanceId) = $this->getClientConfig($topic, '', $instanceId);
 
         return $this->client->getProducer($instanceId, $topic);
     }

@@ -156,7 +156,7 @@ class BaseRequest implements RequestInterface
      * 如果你需要自定义则参照 laravel 的规则
      * @return array
      */
-    public function messages() : array
+    public function messages(): array
     {
         return [];
     }
