@@ -13,7 +13,8 @@
         "laravel/lumen-framework": "^7.0",
         "overtrue/easy-sms": "^1.1",
         "qiniu/php-sdk": "^7.2",
-        "ext-redis": "*"
+        "ext-redis": "*",
+        "ext-openssl": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9.1",
