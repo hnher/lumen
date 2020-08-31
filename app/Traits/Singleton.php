@@ -17,6 +17,10 @@ trait Singleton
 
     }
 
+    /**
+     * 最终返回调用类的实例
+     * @return static
+     */
     public static function getInstance()
     {
         if (is_null(self::$instance)) {

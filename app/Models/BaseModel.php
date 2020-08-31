@@ -12,11 +12,14 @@ use Illuminate\Database\Eloquent\Model;
 use Closure;
 
 /**
- * Class BaseModel
- * @package App\Models
+ * App\Models\BaseModel
+ *
+ * @method static Builder|BaseModel newModelQuery()
+ * @method static Builder|BaseModel newQuery()
+ * @method static Builder|BaseModel query()
  * @method static Builder where(Closure|string|array $column, mixed $operator = null, mixed $value = null, string $boolean = 'and')
  * @method static $this create(string $attributes = [])
- * User retr
+ * @mixin Model
  */
 class BaseModel extends Model
 {
