@@ -6,14 +6,16 @@
     "type": "project",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-json": "*",
+        "ext-openssl": "*",
+        "ext-redis": "*",
+        "aliyunmq/mq-http-sdk": "^1.0",
+        "illuminate/cookie": "^8.17",
         "illuminate/redis": "^8.17",
         "laravel/legacy-factories": "^1.1",
         "laravel/lumen-framework": "^8.0",
         "overtrue/easy-sms": "^1.2",
-        "qiniu/php-sdk": "^7.3",
-        "ext-redis": "*",
-        "ext-openssl": "*",
-        "ext-json": "*"
+        "qiniu/php-sdk": "^7.3"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9.1",
