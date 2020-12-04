@@ -49,7 +49,6 @@ class JsonLineFormatter extends LineFormatter
             }
         }
         if (isset($vars['context']['exception']) && !empty($vars['context']['exception'])) {
-            $vars['message'] = '';
             $vars['context'] = $vars['context']['exception'];
             if (isset($vars['context']['trace'])) {
                 unset($vars['context']['trace']);
