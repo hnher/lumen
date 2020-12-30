@@ -10,6 +10,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Closure;
+use DateTimeInterface;
 
 /**
  * App\Models\BaseModel
@@ -24,4 +25,14 @@ use Closure;
 class BaseModel extends Model
 {
     protected $connection = 'master';
+
+    /**
+     * 保持时间与时区一致
+     * @param DateTimeInterface $date
+     * @return string
+     */
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format($this->dateFormat ?: 'Y-m-d H:i:s');
+    }
 }
