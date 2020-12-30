@@ -17,6 +17,6 @@ class Application extends LumenApplication
     {
         //全链路跟踪 uuid 全局唯一 每次请求/日志 uuid 保持一致
         app('app')->uuid = Str::uuid();
-        return parent::boot();
+        parent::boot();
     }
 }
