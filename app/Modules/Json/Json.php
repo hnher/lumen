@@ -27,11 +27,14 @@ class Json
 
     /**
      * 解析 json 字符串
-     * @param string $str
+     * @param $str
      * @return mixed
      */
-    public function decode(string $str)
+    public function decode($str)
     {
+        if (empty($str)) {
+            return [];
+        }
         return json_decode($str, true, 512);
     }
 }

@@ -12,8 +12,8 @@ use App\Modules\Json\Json as JsonModule;
 
 /**
  * Class Json
- * @method static encode($obj)
- * @method static decode(string $str)
+ * @method static encode(mixed $obj)
+ * @method static decode(mixed $str)
  * @package App\Facades\Json
  * User retr
  */
