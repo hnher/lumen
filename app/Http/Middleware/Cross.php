@@ -38,7 +38,7 @@ class Cross
      * @param $origin
      * @return Response
      */
-    public function setCorsHeaders($response, $origin)
+    public function setCorsHeaders(Response $response, $origin)
     {
         foreach (CrossConstant::HEADERS as $key => $value) {
             $response->header($key, $value);
