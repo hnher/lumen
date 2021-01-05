@@ -183,7 +183,7 @@ class Controller extends BaseController
             "name":"测试"
         }
     ], 
-    "extra": [], 
+    "extra": [],
     "cookies": []
 }
 ```
