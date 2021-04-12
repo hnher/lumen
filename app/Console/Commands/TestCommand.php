@@ -8,7 +8,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
+use App\Facades\Log\Log;
 
 class TestCommand extends Command
 {
