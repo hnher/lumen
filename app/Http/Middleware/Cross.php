@@ -9,6 +9,7 @@ namespace App\Http\Middleware;
 
 use App\Constants\CrossConstant;
 use Closure;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -16,7 +17,7 @@ class Cross
 {
     public function handle(Request $request, Closure $next)
     {
-        $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+        $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 
         //如果是复杂请求，先返回一个200，并allow该origin
         if ($request->isMethod('options')) {
@@ -34,11 +35,11 @@ class Cross
     }
 
     /**
-     * @param Response $response
+     * @param Response|JsonResponse $response
      * @param $origin
      * @return Response
      */
-    public function setCorsHeaders(Response $response, $origin)
+    public function setCorsHeaders($response, $origin)
     {
         foreach (CrossConstant::HEADERS as $key => $value) {
             $response->header($key, $value);

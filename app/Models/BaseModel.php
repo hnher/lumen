@@ -15,6 +15,14 @@ use DateTimeInterface;
 /**
  * App\Models\BaseModel
  *
+ * 属性声明
+ * @property int $id
+ * @property string $uuid
+ * @property int $createdTime
+ * @property int $updatedTime
+ * @property int|null $deletedTime
+ *
+ * 函数声明
  * @method static Builder|BaseModel newModelQuery()
  * @method static Builder|BaseModel newQuery()
  * @method static Builder|BaseModel query()

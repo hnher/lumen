@@ -17,4 +17,10 @@ class ErrorConstant
     const HTTP_ERROR = [
         404 => '接口不存在'
     ];
+
+    //用户未登录
+    const NOT_LOGIN = [
+        'code' => 40003,
+        'message' => '未登录'
+    ];
 }
