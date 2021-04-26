@@ -30,8 +30,8 @@ return [
             'path' => storage_path('logs/response.log'),
             // 日志等级：
             'level' => 'info',
-            // 日志分片周期，多少天一个文件
-            'days' => 1
+            // 日志保存周期
+            'days' => 30
         ]
     ]
 ];

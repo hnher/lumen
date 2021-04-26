@@ -88,9 +88,11 @@ $app->middleware([
     //格式化响应请求
     App\Http\Middleware\Response::class,
     //应用程序请求响应日志
-    App\Http\Middleware\ResponseLogging::class,
+    //App\Http\Middleware\ResponseLogging::class,
     //跨域支持
-    App\Http\Middleware\Cross::class
+    App\Http\Middleware\Cross::class,
+    //用户认证模块
+    App\Http\Middleware\UserMiddleware::class
 ]);
 
 /**
