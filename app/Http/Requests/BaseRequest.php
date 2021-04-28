@@ -21,7 +21,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Class BaseRequest
- * @method input(string $name, mixed $default = null)
  * @method mixed get(string $key, mixed $default = null)
  * @method string method()
  * @method string root()
@@ -159,6 +158,17 @@ class BaseRequest implements RequestInterface
     public function messages(): array
     {
         return [];
+    }
+
+    /**
+     * 获取输入参数
+     * @param string $key
+     * @param null $default
+     * @return mixed
+     */
+    public function input(string $key, $default = null)
+    {
+        return $this->request->input($key, $default);
     }
 
     /**

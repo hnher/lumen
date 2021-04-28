@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Response
 {
-    private $timer = 0;
+    private $timer;
 
     public function __construct()
     {
@@ -38,7 +38,7 @@ class Response
      * @param Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         $response = $next($request);
 
@@ -88,7 +88,7 @@ class Response
                 return $response;
             }
 
-            $data['data'] = $response->original ?? new stdClass();
+            $data['data'] = empty($response->original) ? new stdClass() : $response->original;
             $response->setContent($data);
         }
 
