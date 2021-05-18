@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: 'Scheduler',
-    script: 'php artisan Scheduler:Consumer',
+    script: 'su www-data -s /bin/bash -c "/usr/bin/php artisan Scheduler:Consumer"',
     instances: 4,
     autorestart: true,
     watch: false,
