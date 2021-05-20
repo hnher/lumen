@@ -20,10 +20,10 @@ class UserCache extends Cache
 
     /**
      * 读取用户token
-     * @param string $token
+     * @param $token
      * @return string
      */
-    public static function getUserToken(string $token)
+    public static function getUserToken($token)
     {
         return self::get(self::getKey(self::USER_TOKEN, $token));
     }

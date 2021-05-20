@@ -92,7 +92,7 @@ $app->middleware([
     //跨域支持
     App\Http\Middleware\Cross::class,
     //用户认证模块
-    App\Http\Middleware\UserMiddleware::class
+//    App\Http\Middleware\UserMiddleware::class
 ]);
 
 /**
