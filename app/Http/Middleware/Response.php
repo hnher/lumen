@@ -82,7 +82,7 @@ class Response
 
             //此处用于处理验证器异常
             if ($response->getStatusCode() == 422) {
-                $data['message'] = HttpResponse::$statusTexts[$response->getStatusCode()];
+                $data['message'] = ErrorConstant::HTTP_ERROR[$response->getStatusCode()] ?? HttpResponse::$statusTexts[$response->getStatusCode()];
                 $data['data'] = ['validators' => json_decode($response->getContent())];
                 $response->setContent(json_encode($data, true));
                 return $response;
