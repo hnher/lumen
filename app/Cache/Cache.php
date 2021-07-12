@@ -13,7 +13,7 @@ use App\Facades\Redis\Redis;
 /**
  * Class RedisCache
  * @package App\Cache
- * User retr
+ * Module retr
  */
 class Cache extends Redis
 {

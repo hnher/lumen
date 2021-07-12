@@ -105,7 +105,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  * @method bool isXmlHttpRequest()
  * @method bool preferSafeContent()
  * @package App\Http\Requests
- * User retr
+ * Module retr
  * @see Request;
  */
 class BaseRequest implements RequestInterface

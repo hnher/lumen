@@ -19,7 +19,7 @@ use Exception;
  * Class ConsumerCommand
  * 消费者类用于监听不同 Topic 的消费者类
  * @package App\Modules\Scheduler\Commands
- * User retr
+ * Module retr
  */
 class ConsumerCommand extends Command
 {

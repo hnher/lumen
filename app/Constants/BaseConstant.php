@@ -11,7 +11,7 @@ namespace App\Constants;
 /**
  * Class BaseConstant
  * @package App\Constants
- * User retr
+ * Module retr
  */
 class BaseConstant
 {

@@ -14,7 +14,7 @@ use Illuminate\Console\Command;
  * 所有基于 Scheduler 任务需要继承本类
  * Class SchedulerCommand
  * @package App\Modules\Scheduler\Commands
- * User retr
+ * Module retr
  */
 class SchedulerCommand extends Command
 {

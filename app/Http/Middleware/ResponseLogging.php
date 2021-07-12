@@ -16,7 +16,7 @@ use Closure;
  * 应用程序请求日志
  * 如果启用则会记录每一次的请求内容和响应内容
  * @package App\Http\Middleware
- * User retr
+ * Module retr
  */
 class ResponseLogging
 {

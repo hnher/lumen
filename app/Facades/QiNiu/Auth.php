@@ -14,7 +14,7 @@ use Qiniu\Auth as QiNiuAuth;
  * Class Auth
  * @method static uploadToken($bucket, $key = null, $expires = 3600, $policy = null, $strictPolicy = true)
  * @package App\Facades\QiNiu
- * User retr
+ * Module retr
  */
 class Auth extends Facade
 {

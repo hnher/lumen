@@ -11,7 +11,7 @@ namespace App\Modules\Json;
  * 需要统一解码和编码，防止空数组空对象互转问题。
  * Class Json
  * @package App\Models\Json
- * User retr
+ * Module retr
  */
 class Json
 {

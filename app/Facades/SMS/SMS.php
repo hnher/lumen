@@ -14,7 +14,7 @@ use Overtrue\EasySms\EasySms;
  * Class SMS
  * @method static send($to, $message, array $gateways = [])
  * @package App\Facades\SMS
- * User retr
+ * Module retr
  */
 class SMS extends Facade
 {

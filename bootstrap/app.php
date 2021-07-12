@@ -121,6 +121,7 @@ $app->register(Illuminate\Redis\RedisServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Illuminate\Database\Eloquent\LegacyFactoryServiceProvider::class);
+$app->register(App\Modules\User\ServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

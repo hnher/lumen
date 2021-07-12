@@ -1,7 +1,7 @@
 <?php
 /**
  * Create By PhpStorm
- * User Retr0
+ * Module Retr0
  * Date 2020/10/27
  * Time 3:42 下午
  */
@@ -9,7 +9,7 @@
 namespace App\Properties;
 
 /**
- * Class User
+ * Class Module
  * @property int $id
  * @property string $name
  * @property string $nickname
@@ -25,7 +25,7 @@ class User extends Property
     public $id, $name, $nickname, $appId, $uuid, $avatar, $platform, $mobile;
 
     /**
-     * User constructor.
+     * Module constructor.
      * @param int $id
      * @param string $uuid
      * @param string $name

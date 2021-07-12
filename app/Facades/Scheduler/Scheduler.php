@@ -16,7 +16,7 @@ use App\Modules\Scheduler\Scheduler as SchedulerModule;
  * 发生消息
  * @method static mixed sendMessage(Message $message, string $topic = '', string $instanceId = '')
  * @package App\Facades\Scheduler
- * User retr
+ * Module retr
  */
 class Scheduler extends Facade
 {

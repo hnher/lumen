@@ -15,7 +15,7 @@ use App\Modules\Json\Json as JsonModule;
  * @method static encode(mixed $obj)
  * @method static decode(mixed $str)
  * @package App\Facades\Json
- * User retr
+ * Module retr
  */
 class Json extends Facade
 {
