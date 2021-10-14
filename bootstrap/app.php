@@ -34,7 +34,7 @@ $app->withEloquent();
 |
 | Now we will register a few bindings in the service container. We will
 | register the exception handler and the console kernel. You may add
-| your own bindings here if you like or you can make another file.
+| your own bindings here if you like, or you can make another file.
 |
 */
 
@@ -109,7 +109,7 @@ $app->routeMiddleware([
 | Register Service Providers
 |--------------------------------------------------------------------------
 |
-| Here we will register all of the application's service providers which
+| Here we will register all the application's service providers which
 | are used to bind services into the container. Service providers are
 | totally optional, so you are not required to uncomment this line.
 |
@@ -122,6 +122,8 @@ $app->register(Illuminate\Redis\RedisServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Illuminate\Database\Eloquent\LegacyFactoryServiceProvider::class);
 $app->register(App\Modules\User\ServiceProvider::class);
+//laravel swoole 服务
+//$app->register(SwooleTW\Http\LumenServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -129,7 +131,7 @@ $app->register(App\Modules\User\ServiceProvider::class);
 |--------------------------------------------------------------------------
 |
 | Next we will include the routes file so that they can all be added to
-| the application. This will provide all of the URLs the application
+| the application. This will provide all the URLs the application
 | can respond to, as well as the controllers that may handle them.
 |
 */
