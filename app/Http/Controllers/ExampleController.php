@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Modules\User\User;
+
 class ExampleController extends Controller
 {
     /**
@@ -21,6 +23,7 @@ class ExampleController extends Controller
     public function index(): array
     {
         return [
+            'userId' => User::get('id'),
             'datetime' => date('Y-m-d H:i:s')
         ];
     }

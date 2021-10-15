@@ -8,7 +8,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Facades\Log\Log;
 
 class TestCommand extends Command
 {
@@ -21,7 +20,6 @@ class TestCommand extends Command
      */
     public function handle()
     {
-        $encode = base64_encode('A');
-        dd($encode);
+
     }
 }

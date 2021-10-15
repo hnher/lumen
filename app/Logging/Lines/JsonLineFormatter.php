@@ -8,6 +8,7 @@
 namespace App\Logging\Lines;
 
 use App\Facades\Json\Json;
+use Illuminate\Support\Facades\Request;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Formatter\NormalizerFormatter;
 
@@ -20,19 +21,20 @@ class JsonLineFormatter extends LineFormatter
      */
     public function format(array $record): string
     {
-        $port = $_SERVER['SERVER_PORT'] ?? 80;
+        $server = Request::server();
+        $port = $server['SERVER_PORT'] ?? 80;
         $protocol = $port == 443 ? 'https://' : 'http://';
-        $host = $_SERVER['HTTP_HOST'] ?? '';
-        $uri = $_SERVER['REQUEST_URI'] ?? '';
-        $referer = $_SERVER['HTTP_REFERER'] ?? '';
-        $ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        $host = $server['HTTP_HOST'] ?? '';
+        $uri = $server['REQUEST_URI'] ?? '';
+        $referer = $server['HTTP_REFERER'] ?? '';
+        $ua = $server['HTTP_USER_AGENT'] ?? '';
         $url = $protocol . $host . $uri;
         $cookies = Json::encode($_COOKIE ?? "");
-        $authorization = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
-        if (strpos(php_sapi_name(), 'cli') !== false) {
+        $authorization = $server['HTTP_AUTHORIZATION'] ?? '';
+        if ($ua === 'Symfony') {
             $url = 'artisan';
             $referer = 'artisan';
-            $ua = 'php artisan';
+            $ua = 'artisan';
         }
 
         $datetime = date('Y-m-d H:i:s', time());

@@ -10,8 +10,10 @@ namespace App\Modules\User;
 use App\Cache\UserCache;
 use App\Exceptions\User\NotLoginException;
 use App\Facades\Json\Json;
+use App\Facades\Log\Log;
 use Exception;
 use App\Properties\User as UserProperty;
+use Illuminate\Support\Facades\Request;
 
 class Module
 {
@@ -27,12 +29,13 @@ class Module
      */
     public function __construct()
     {
-        $token = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+        $token = Request::header('authorization');
+        Log::info('header', ['token' => $token]);
 
         if (empty($token)) {
-            $token = $_GET['token'] ?? '';
+            $token = Request::input('token');
         }
-
+        Log::info('token', ['token' => $token]);
         $user = null;
         if (!empty($token)) {
             $user = Json::decode(UserCache::getUserToken($token));
