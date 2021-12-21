@@ -15,8 +15,7 @@
         "laravel/legacy-factories": "^1.1",
         "laravel/lumen-framework": "^8.0",
         "overtrue/easy-sms": "^1.2",
-        "qiniu/php-sdk": "^7.3",
-        "swooletw/laravel-swoole": "^2.8"
+        "qiniu/php-sdk": "^7.3"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9.1",

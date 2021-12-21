@@ -123,7 +123,6 @@ $app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->register(Illuminate\Database\Eloquent\LegacyFactoryServiceProvider::class);
 $app->register(App\Modules\User\ServiceProvider::class);
 //laravel swoole 服务
-$app->register(SwooleTW\Http\LumenServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
