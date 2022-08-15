@@ -8,55 +8,37 @@
 namespace App\Modules\User;
 
 use App\Cache\UserCache;
-use App\Exceptions\User\NotLoginException;
+use App\Exceptions\User\UserNotLoginException;
 use App\Facades\Json\Json;
-use App\Facades\Log\Log;
-use Exception;
-use App\Properties\User as UserProperty;
-use Illuminate\Support\Facades\Request;
 
 class Module
 {
     /**
-     * @var UserProperty
+     * @param string $name
+     * @param null $default
+     * @return mixed|null
+     * @throws UserNotLoginException
      */
-    private $user;
-
-    /**
-     * Module constructor.
-     * @throws Exception
-     * @throws NotLoginException
-     */
-    public function __construct()
+    public function get(string $name, $default = null): mixed
     {
-        $token = Request::header('authorization');
-        Log::info('header', ['token' => $token]);
+        $request = app('request');
+        $token = $request->header('authorization');
 
         if (empty($token)) {
-            $token = Request::input('token');
+            $token = $request->input('token');
         }
-        Log::info('token', ['token' => $token]);
-        $user = null;
+
+        $user = [];
         if (!empty($token)) {
             $user = Json::decode(UserCache::getUserToken($token));
         }
 
-        $this->user = $user;
+        $user = collect($user);
 
-        if (empty($this->user) && $_SERVER['PHP_SELF'] !== 'artisan') {
-            throw new NotLoginException();
+        if (collect($user)->isEmpty() && is_null($default)) {
+            throw new UserNotLoginException();
         }
-    }
 
-    /**
-     * @param string $name
-     * @return mixed|null
-     */
-    public function get(string $name)
-    {
-        if ($_SERVER['PHP_SELF'] === 'artisan') {
-            return null;
-        }
-        return empty($this->user[$name]) ? null : $this->user[$name];
+        return $user->get($name, $default);
     }
 }

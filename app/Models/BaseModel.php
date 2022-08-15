@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 use Closure;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+use App\Modules\User\User;
 
 /**
  * App\Models\BaseModel
@@ -68,14 +70,14 @@ class BaseModel extends Model
      * @param DateTimeInterface $date
      * @return string
      */
-    protected function serializeDate(DateTimeInterface $date)
+    protected function serializeDate(DateTimeInterface $date): string
     {
         return $date->format($this->dateFormat ?: 'Y-m-d H:i:s');
     }
 
-    public static function uuid()
+    public static function uuid(): string
     {
-        return base_convert(rand(1000, 9999) . date('YmdHis') . rand(1000, 9999), 10, 36);
+        return strtoupper(Str::replace('-', '', Str::uuid()->toString()));
     }
     /**
      * 自动写入应用ID 和 平台ID

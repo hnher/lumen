@@ -13,7 +13,7 @@ namespace App\Exceptions\User;
 use App\Constants\ErrorConstant;
 use App\Exceptions\BaseException;
 
-class NotLoginException extends BaseException
+class UserNotLoginException extends BaseException
 {
     public const ERRORS =  ErrorConstant::NOT_LOGIN;
 }

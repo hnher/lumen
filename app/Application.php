@@ -8,6 +8,7 @@
 
 namespace App;
 
+use App\Models\BaseModel;
 use Illuminate\Support\Str;
 use Laravel\Lumen\Application as LumenApplication;
 
@@ -16,7 +17,7 @@ class Application extends LumenApplication
     public function boot()
     {
         //全链路跟踪 uuid 全局唯一 每次请求/日志 uuid 保持一致
-        app()->uuid = Str::uuid();
+        app()->uuid = BaseModel::uuid();
         parent::boot();
     }
 }
