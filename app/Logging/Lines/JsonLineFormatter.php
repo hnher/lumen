@@ -11,15 +11,16 @@ use App\Facades\Json\Json;
 use Illuminate\Support\Facades\Request;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Formatter\NormalizerFormatter;
+use Monolog\LogRecord;
 
 class JsonLineFormatter extends LineFormatter
 {
     /**
-     * 格式化
-     * @param array $record
+     * 日志格式化
+     * @param LogRecord|array $record
      * @return string
      */
-    public function format(array $record): string
+    public function format(LogRecord|array $record): string
     {
         $server = Request::server();
         $port = $server['SERVER_PORT'] ?? 80;
@@ -45,8 +46,9 @@ class JsonLineFormatter extends LineFormatter
         $vars['channel'] = $vars['context']['channel'] ?? 'local';
         $vars['uuid'] = app('app')->uuid;
         $vars['domain'] = $host;
+        $vars['cookies'] = $cookies;
         foreach ($vars['extra'] as $var => $val) {
-            if (false !== strpos($output, '%extra.' . $var . '%')) {
+            if (str_contains($output, '%extra.' . $var . '%')) {
                 $output = str_replace('%extra.' . $var . '%', $this->stringify($val), $output);
                 unset($vars['extra'][$var]);
             }
@@ -61,17 +63,17 @@ class JsonLineFormatter extends LineFormatter
             }
         }
 
-        if (false !== strpos($output, '%')) {
+        if (str_contains($output, '%')) {
             $output = preg_replace('/%(?:extra|context)\..+?%/', '', $output);
         }
 
         foreach ($vars as $var => $val) {
-            if (false !== strpos($output, '%' . $var . '%')) {
+            if (str_contains($output, '%' . $var . '%')) {
                 $output = str_replace('%' . $var . '%', $this->stringify($val), $output);
             }
         }
         // remove leftover %extra.xxx% and %context.xxx% if any
-        if (false !== strpos($output, '%')) {
+        if (str_contains($output, '%')) {
             $output = preg_replace('/%(?:extra|context)\..+?%/', '', $output);
         }
         return $output;

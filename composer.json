@@ -10,13 +10,11 @@
         "ext-openssl": "*",
         "ext-redis": "*",
         "aliyunmq/mq-http-sdk": "^1.0",
-        "illuminate/cookie": "^8.17",
-        "illuminate/redis": "^8.17",
+        "illuminate/cookie": "^10.0",
+        "illuminate/redis": "^10.0",
         "laravel/legacy-factories": "^1.1",
-        "laravel/lumen-framework": "^8.0",
-        "overtrue/easy-sms": "^1.2",
-        "nsq/nsq": "^0.8.0",
-        "qiniu/php-sdk": "^7.3"
+        "laravel/lumen-framework": "^10.0",
+        "nsq/nsq": "^0.9.1"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9.1",
