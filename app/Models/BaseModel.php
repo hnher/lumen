@@ -13,7 +13,6 @@ use Closure;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
-use App\Modules\User\User;
 
 /**
  * App\Models\BaseModel
@@ -39,30 +38,14 @@ class BaseModel extends Model
 
     protected $connection = 'master';
 
-    public const CREATED_AT = 'createdTime';
+    public $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
-    public const UPDATED_AT = 'updatedTime';
-
-    public const DELETED_AT = 'deletedTime';
-
-    protected $dateFormat = 'U';
-
-    public $guarded = ['id', 'createdTime', 'updatedTime', 'deletedTime'];
-
-    public $hidden = ['id', 'appId', 'platformId', 'userId', 'sellerId', 'deletedTime', 'unitId', 'activityId', 'planId', 'couponId', 'partnerId', 'paymentId', 'orderId', 'billId'];
+    public $hidden = ['id'];
 
     protected $casts = [
-        'createdTime' => 'datetime:Y-m-d H:i:s',
-        'updatedTime' => 'datetime:Y-m-d H:i:s',
-        'deletedTime' => 'datetime:Y-m-d H:i:s',
-        'startTime' => 'datetime:Y-m-d H:i:s',
-        'endTime' => 'datetime:Y-m-d H:i:s',
-        'receiveTime' => 'datetime:Y-m-d H:i:s',
-        'expireTime' => 'datetime:Y-m-d H:i:s',
-        'useTime' => 'datetime:Y-m-d H:i:s',
-        'verifyTime' => 'datetime:Y-m-d H:i:s',
-        'paidTime' => 'datetime:Y-m-d H:i:s',
-        'refundTime' => 'datetime:Y-m-d H:i:s',
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+        'deleted_at' => 'datetime:Y-m-d H:i:s'
     ];
 
     /**
@@ -87,8 +70,6 @@ class BaseModel extends Model
         parent::boot();
         self::creating( function ($model) {
             $attributes = $model->getAttributes();
-            $model->appId = empty($attributes['appId']) ? User::get('appId') : $attributes['appId'];
-            $model->platformId = empty($attributes['platformId']) ? User::get('platform') : $attributes['platformId'];
             $model->uuid = empty($attributes['uuid']) ? self::uuid() : $attributes['uuid'];
         });
     }

@@ -9,16 +9,20 @@
 namespace App\Http\Middleware;
 
 use App\Constants\ErrorConstant;
+use App\Http\Resources\JsonResource;
 use Exception as BaseException;
 use Closure;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use stdClass;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Response
 {
-    private $timer;
+    private int $timer;
 
     public function __construct()
     {
@@ -27,8 +31,8 @@ class Response
 
     //设置排除的路由 例如：/api/*
     //设置后则不会被格式化
-    protected $except = [
-
+    protected array $except = [
+        '/notify/*'
     ];
 
     /**
@@ -38,7 +42,7 @@ class Response
      * @param Closure $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         $response = $next($request);
 
@@ -88,14 +92,49 @@ class Response
                 return $response;
             }
 
-            $data['data'] = empty($response->original) ? new stdClass() : $response->original;
+            //如果是空字符则格式化为对象型
+            if (empty($response->original)) {
+                $data['data'] = new stdClass();
+                $response->setContent($data);
+                return $response;
+            }
+            if (gettype($response->original) == 'boolean') {
+                $data['data'] = ['status' => $response->original];
+            }
+            //返回字符串型格式化
+            if (gettype($response->original) == 'string') {
+                $data['data'] = ['body' => $response->original];
+            }
+            if ($response->original instanceof LengthAwarePaginator) {
+                $data['data']= [
+                    'currentPage' => $response->original->currentPage(),
+                    'items' => JsonResource::collection($response->original->items()),
+                    'lastPage' => $response->original->lastPage()
+                ];
+            }
+            //数组处理，此处仅对一位数组进行处理
+            if (gettype($response->original) == 'array') {
+                $data['data'] = $response->original;
+                if (!empty($response->original[0])) {
+                    $data['data'] = ['items' => $response->original];
+                }
+            }
+            //集合处理
+            if (gettype($response->original) == 'object' && $response->original instanceof Collection) {
+                $data['data'] = ['items' => JsonResource::collection($response->original)];
+            }
+            //模型处理
+            if ($response->original instanceof Model) {
+                $data['data'] = JsonResource::make($response->original);
+            }
+
             $response->setContent($data);
         }
 
         return $response;
     }
 
-    protected function inExceptArray($request)
+    protected function inExceptArray($request): bool
     {
         foreach ($this->except as $except) {
             if ($except !== '/') {
