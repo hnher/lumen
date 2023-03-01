@@ -7,6 +7,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Closure;
@@ -20,8 +21,8 @@ use Illuminate\Support\Str;
  * 属性声明
  * @property int $id
  * @property string $uuid
- * @property int $createdTime
- * @property int $updatedTime
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property int|null $deletedTime
  *
  * 函数声明
