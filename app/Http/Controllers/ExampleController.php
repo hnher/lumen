@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\User\UserNotLoginException;
 use App\Facades\Log\Log;
+use App\Logic\BaseLogic;
 use App\Modules\User\User;
 
 class ExampleController extends Controller

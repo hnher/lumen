@@ -11,5 +11,4 @@ namespace App\Logic;
  */
 class BaseLogic
 {
-
 }
