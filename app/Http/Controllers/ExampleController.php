@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\User\UserNotLoginException;
 use App\Facades\Log\Log;
 use App\Modules\User\User;
 

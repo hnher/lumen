@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Facades\Log\Log;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -25,6 +26,7 @@ class Handler extends ExceptionHandler
         HttpException::class,
         ModelNotFoundException::class,
         ValidationException::class,
+        Exception::class
     ];
 
     /**
@@ -37,8 +39,14 @@ class Handler extends ExceptionHandler
      *
      * @throws Exception
      */
-    public function report(Throwable $e)
+    public function report(Throwable $e): void
     {
+        Log::error($e->getCode() . ":" . $e->getMessage(), [
+            "code" => $e->getCode(),
+            "message" => $e->getMessage(),
+            "line" => $e->getLine(),
+            "file" => $e->getFile()
+        ]);
         parent::report($e);
     }
 
@@ -51,7 +59,7 @@ class Handler extends ExceptionHandler
      *
      * @throws Throwable
      */
-    public function render($request, Throwable $e)
+    public function render($request, Throwable $e): Response|JsonResponse
     {
         return parent::render($request, $e);
     }
