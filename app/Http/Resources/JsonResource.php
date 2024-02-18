@@ -15,7 +15,6 @@ class JsonResource extends BaseJsonResource
     public function toArray($request): array
     {
         $items = Json::decode(Json::encode($this->resource));
-
         return $this->underscoreToHump($items);
     }
 
