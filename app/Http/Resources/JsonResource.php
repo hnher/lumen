@@ -15,7 +15,8 @@ class JsonResource extends BaseJsonResource
     public function toArray($request): array
     {
         $items = Json::decode(Json::encode($this->resource));
-        return $this->underscoreToHump($items);
+
+        return $this->camelCaseKeysRecursive($items);
     }
 
     /**
@@ -23,24 +24,15 @@ class JsonResource extends BaseJsonResource
      * @param $data
      * @return array
      */
-    public function underscoreToHump($data): array
+    public function camelCaseKeysRecursive($data): array
     {
-        $newParameters = [];
-        if ($data) {
-            foreach ($data as $key => $value) {
-                if (!is_int($key)) {
-                    if (is_array($value)) {
-                        $newParameters[Str::camel($key)] = $this->underscoreToHump($value);
-                    } else {
-                        $newParameters[Str::camel($key)] = $value;
-                    }
-                } else if (is_array($value)) {
-                    $newParameters[$key] = $this->underscoreToHump($value);
-                } else {
-                    $newParameters[$key] = $value;
-                }
+        return array_map(function($item) {
+            if (is_array($item)) {
+                $item = $this->camelCaseKeysRecursive($item);
             }
-        }
-        return $newParameters;
+            return $item;
+        }, collect($data)->mapWithKeys(function($value, $key) {
+            return [Str::camel($key) => $value];
+        })->toArray());
     }
 }
