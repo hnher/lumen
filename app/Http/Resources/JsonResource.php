@@ -26,12 +26,12 @@ class JsonResource extends BaseJsonResource
      */
     public function camelCaseKeysRecursive($data): array
     {
-        return array_map(function($item) {
+        return array_map(function ($item) {
             if (is_array($item)) {
                 $item = $this->camelCaseKeysRecursive($item);
             }
             return $item;
-        }, collect($data)->mapWithKeys(function($value, $key) {
+        }, collect($data)->mapWithKeys(function ($value, $key) {
             return [Str::camel($key) => $value];
         })->toArray());
     }

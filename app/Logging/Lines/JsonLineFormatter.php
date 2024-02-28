@@ -40,7 +40,7 @@ class JsonLineFormatter extends LineFormatter
 
         $datetime = date('Y-m-d H:i:s', time());
 
-        $output = '{"app": "%app%", "authorization": "'. $authorization .'", "datetime": "' . $datetime . '", "timestamp": "%datetime%", "url": "' . $url . '", "UA": "' . $ua . '", "referer": "' . $referer . '", "uuid": "%uuid%", "domain": "%domain%", "channel": "%channel%", "level": "%level_name%", "message": "%message%", "context": [%context%], "extra": %extra%, "cookies": ' . "%cookies%" . '}' . "\n";
+        $output = '{"app": "%app%", "authorization": "' . $authorization . '", "datetime": "' . $datetime . '", "timestamp": "%datetime%", "url": "' . $url . '", "UA": "' . $ua . '", "referer": "' . $referer . '", "uuid": "%uuid%", "domain": "%domain%", "channel": "%channel%", "level": "%level_name%", "message": "%message%", "context": [%context%], "extra": %extra%, "cookies": ' . "%cookies%" . '}' . "\n";
         $vars = (new NormalizerFormatter())->format($record);
         $vars['app'] = config('app.name');
         $vars['channel'] = $vars['context']['channel'] ?? 'local';

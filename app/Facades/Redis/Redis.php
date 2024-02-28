@@ -7,10 +7,10 @@
 
 namespace App\Facades\Redis;
 
-use Illuminate\Support\Facades\Facade;
-use Illuminate\Redis\Limiters\DurationLimiterBuilder;
-use Illuminate\Redis\Limiters\ConcurrencyLimiterBuilder;
 use Illuminate\Redis\Connections\Connection;
+use Illuminate\Redis\Limiters\ConcurrencyLimiterBuilder;
+use Illuminate\Redis\Limiters\DurationLimiterBuilder;
+use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static Connection connection(string $name = null)

@@ -7,13 +7,13 @@
 
 namespace App\Http\Requests;
 
-use Closure;
 use App\Interfaces\Request\Request as RequestInterface;
+use Closure;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
-use Laravel\Lumen\Routing\ProvidesConvenienceMethods;
 use Illuminate\Validation\ValidationException;
+use Laravel\Lumen\Routing\ProvidesConvenienceMethods;
 use Laravel\Lumen\Routing\Router;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;

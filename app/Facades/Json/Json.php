@@ -7,8 +7,8 @@
 
 namespace App\Facades\Json;
 
-use Illuminate\Support\Facades\Facade;
 use App\Modules\Json\Json as JsonModule;
+use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Json

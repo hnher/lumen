@@ -15,5 +15,5 @@ use App\Exceptions\BaseException;
 
 class UserNotLoginException extends BaseException
 {
-    public const ERRORS =  ErrorConstant::NOT_LOGIN;
+    public const ERRORS = ErrorConstant::NOT_LOGIN;
 }

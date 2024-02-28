@@ -2,8 +2,8 @@
 
 namespace App\Facades\NSQ;
 
-use Illuminate\Support\Facades\Facade;
 use App\Modules\NSQ\NSQ as NSQModule;
+use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static bool pub(array $message, string $topic, int $delay = 0, string $unit = 's')

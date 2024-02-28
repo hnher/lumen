@@ -57,13 +57,13 @@ return [
 
         'single' => [
             'driver' => 'single',
-            'path' => storage_path('logs/laravel.log'),
+            'path' => storage_path('logs/' . env('APP_NAME') . '.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
         'local' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/' . env('APP_NAME') .'.log'),
+            'path' => storage_path('logs/' . env('APP_NAME') . '.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 30,
         ],
@@ -71,7 +71,7 @@ return [
         'daily' => [
             'driver' => 'daily',
             'tap' => [JsonFormatter::class],
-            'path' => storage_path('logs/' . env('APP_NAME') .'.log'),
+            'path' => storage_path('logs/' . env('APP_NAME') . '.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 30,
         ],
@@ -91,7 +91,7 @@ return [
             'handler_with' => [
                 'host' => env('PAPERTRAIL_URL'),
                 'port' => env('PAPERTRAIL_PORT'),
-                'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
+                'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'),
             ],
         ],
 

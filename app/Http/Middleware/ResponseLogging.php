@@ -8,8 +8,8 @@
 namespace App\Http\Middleware;
 
 use App\Facades\Json\Json;
-use Illuminate\Support\Facades\Log;
 use Closure;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class ApplicationLogging

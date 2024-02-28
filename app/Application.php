@@ -9,7 +9,6 @@
 namespace App;
 
 use App\Models\BaseModel;
-use Illuminate\Support\Str;
 use Laravel\Lumen\Application as LumenApplication;
 
 class Application extends LumenApplication

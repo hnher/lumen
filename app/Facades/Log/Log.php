@@ -8,8 +8,8 @@
 
 namespace App\Facades\Log;
 
-use Illuminate\Support\Facades\Facade;
 use App\Modules\Log\Log as LogModule;
+use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Log

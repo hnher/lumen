@@ -10,14 +10,14 @@ namespace App\Http\Middleware;
 
 use App\Constants\ErrorConstant;
 use App\Http\Resources\JsonResource;
-use Exception as BaseException;
 use Closure;
+use Exception as BaseException;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use stdClass;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Response
@@ -106,7 +106,7 @@ class Response
                 $data['data'] = ['body' => $response->original];
             }
             if ($response->original instanceof LengthAwarePaginator) {
-                $data['data']= [
+                $data['data'] = [
                     'currentPage' => $response->original->currentPage(),
                     'items' => JsonResource::collection($response->original->items()),
                     'lastPage' => $response->original->lastPage()

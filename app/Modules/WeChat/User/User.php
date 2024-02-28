@@ -12,9 +12,9 @@ use App\Modules\WeChat\Encrypt\Encrypt;
 use App\Modules\WeChat\Exceptions\DecryptException;
 use App\Modules\WeChat\Exceptions\WeChatException;
 use App\Modules\WeChat\WeChat;
+use Exception;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Exception;
 
 class User extends WeChat
 {

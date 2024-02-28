@@ -52,7 +52,7 @@ return [
             'collation' => env('DB_MASTER_COLLATION', 'utf8mb4_unicode_ci'),
             'prefix' => env('DB_MASTER_PREFIX', ''),
             'strict' => env('DB_MASTER_STRICT_MODE', true),
-            'engine' => env('DB_MASTER_ENGINE', null),
+            'engine' => env('DB_MASTER_ENGINE'),
             'timezone' => env('DB_MASTER_TIMEZONE', '+00:00'),
         ]
 
@@ -90,14 +90,14 @@ return [
 
         'default' => [
             'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD', null),
+            'password' => env('REDIS_PASSWORD'),
             'port' => env('REDIS_PORT', 6379),
             'database' => env('REDIS_DB', 0),
         ],
 
         'cache' => [
             'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD', null),
+            'password' => env('REDIS_PASSWORD'),
             'port' => env('REDIS_PORT', 6379),
             'database' => env('REDIS_CACHE_DB', 1),
         ],

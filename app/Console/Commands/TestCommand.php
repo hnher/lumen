@@ -8,6 +8,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+
 class TestCommand extends Command
 {
     protected $signature = 'Test:Test';

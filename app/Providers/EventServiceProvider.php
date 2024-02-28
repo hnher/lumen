@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
-use App\Listeners\ExampleListener;
 use App\Events\ExampleEvent;
+use App\Listeners\ExampleListener;
+use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
 {

@@ -8,8 +8,8 @@
 namespace App\Facades\Scheduler;
 
 use App\Modules\Scheduler\Messages\Message;
-use Illuminate\Support\Facades\Facade;
 use App\Modules\Scheduler\Scheduler as SchedulerModule;
+use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Scheduler

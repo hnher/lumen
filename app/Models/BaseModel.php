@@ -8,10 +8,10 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Closure;
 use DateTimeInterface;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -63,13 +63,14 @@ class BaseModel extends Model
     {
         return strtoupper(Str::replace('-', '', Str::uuid()->toString()));
     }
+
     /**
      * 自动写入应用ID 和 平台ID
      */
     public static function boot()
     {
         parent::boot();
-        self::creating( function ($model) {
+        self::creating(function ($model) {
             $attributes = $model->getAttributes();
             $model->uuid = empty($attributes['uuid']) ? self::uuid() : $attributes['uuid'];
         });
