@@ -20,6 +20,7 @@ class NSQ
      */
     public function pub(array $message, string $topic, int $delay = 0, string $unit = 's'): bool
     {
+        //此处设置延迟时间
         if ($delay > 0 && $unit === 's') {
             $delay = $delay * 1000;
         }
