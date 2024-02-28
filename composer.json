@@ -1,7 +1,12 @@
 {
     "name": "hnher/lumen",
     "description": "Lumen 框架的手脚架项目",
-    "keywords": ["framework", "laravel", "lumen", "scaffold"],
+    "keywords": [
+        "framework",
+        "laravel",
+        "lumen",
+        "scaffold"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {

@@ -165,6 +165,7 @@ class Controller extends BaseController
 ```text
 {"datetime": "2020-07-06 15:28:02", "timestamp": "2020-07-06T15:28:02.844005+08:00", "url": "artisan", "UA": "php artisan", "referer": "artisan", "uuid": "uuid:5eb4e2a3-e843-4224-bde3-7fce8008b8b9", "channel": "local", "level": "INFO", "message": "测试日志写入", "c": [{"name":"测试"}], "extra": [], "cookies": []}
 ```
+
 具体 Json 如下
 
 ```json
